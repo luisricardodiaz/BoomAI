@@ -1,6 +1,8 @@
 import os
-from speech_synthesis import speak
+from speech_synthesis import ai_speak
 from speech_capture import recording_input
+from python_to_xml import create_xml
+from speech_emotion import ai_speak2
 import openai
 
 openai.api_key ='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'
@@ -46,12 +48,13 @@ class Chatbot:
 
 def converse(user: str, bot: Chatbot):
     user_input = ''
-    speak(bot.chat('Hi, my name is {}'.format(user)))
+    ai_speak(bot.chat('Hi, my name is {}'.format(user)))
     
     while user_input not in ['Bye.', 'Bye', 'bye.', 'bye', 'byee', 'Byee', 'Goodbye', 'byeee', 'Byeee', 'exit', 'quit']:
         user_input = recording_input()
         response = bot.chat(user_input)
-        speak(response)
+        create_xml(response)
+        ai_speak2(response)
 
         
 friendly = Chatbot()

@@ -1,7 +1,8 @@
-<speak version="1.0" xmlns="https://www.w3.org/2001/10/synthesis"  xmlns:mstts="https://www.w3.org/2001/mstts" xml:lang="en-US">
-  <voice name="en-US-JennyNeural">
-    <mstts:express-as style="assistant" styledegree="2">
-        Hello my name is Alexa
-    </mstts:express-as>
-  </voice>
+<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis"
+       xmlns:mstts="https://www.w3.org/2001/mstts" xml:lang="en-US">
+    <voice name="en-US-AriaNeural">
+        <mstts:express-as style="cheerful" styledegree="2">
+            Hello
+        </mstts:express-as>
+    </voice>
 </speak>
