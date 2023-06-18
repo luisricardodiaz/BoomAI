@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .chat-container {
+            width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .chat-history {
+            height: 300px;
+            overflow-y: scroll;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .message {
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .user-message {
+            background-color: #f2f2f2;
+        }
+        .assistant-message {
+            background-color: #e6e6e6;
+        }
+        .user-input {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .submit-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-history">
+            {% set displayed_messages = [] %}
+            {% for message in chat_history %}
+                {% if message.role == 'user' %}
+                    {% if message.content not in displayed_messages %}
+                        <div class="message user-message">{{ message.content }}</div>
+                        {% set _ = displayed_messages.append(message.content) %}
+                    {% endif %}
+                {% elif message.role == 'assistant' %}
+                    {% if message.content not in displayed_messages %}
+                        <div class="message assistant-message">{{ message.content }}</div>
+                        {% set _ = displayed_messages.append(message.content) %}
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </div>
+        <form method="POST" action="/">
+            <!-- Updated textarea with an ID for manipulation -->
+            <textarea id="user-input" name="user_input" class="user-input" rows="4" placeholder="Type or speak your message here"></textarea>
+            <input type="submit" class="submit-button" value="Send">
+        </form>
+        <!-- Add the voice input button -->
+        <button id="voice-input-button">Start Voice Input</button>
+    </div>
+​
+    <script>
+        // Scroll to the bottom of the chat history
+        var chatHistory = document.querySelector(".chat-history");
+        chatHistory.scrollTop = chatHistory.scrollHeight;
+​
+        // Function to handle the voice input
+        function startSpeechRecognition() {
+            const recognition = new webkitSpeechRecognition();
+            recognition.continuous = true;
+            recognition.interimResults = true;
+            recognition.lang = 'en-US';
+​
+            recognition.start();
+​
+            recognition.onresult = function (event) {
+                const interimTranscript = event.results[event.results.length - 1][0].transcript;
+                document.querySelector("#user-input").value = interimTranscript;
+            };
+​
+            recognition.onend = function () {
+                const finalTranscript = document.querySelector("#user-input").value;
+                recognition.stop();
+            };
+        }
+​
+        // Add event listener to the voice input button
+        const voiceInputButton = document.getElementById('voice-input-button');
+        voiceInputButton.addEventListener('click', startSpeechRecognition);
+    </script>
+</body>
+</html>

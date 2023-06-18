@@ -1,7 +1,7 @@
 <speak version="1.0" xmlns="https://www.w3.org/2001/10/synthesis"  xmlns:mstts="https://www.w3.org/2001/mstts" xml:lang="en-US">
     		<voice name="en-US-AriaNeural">
-    				<mstts:express-as style="terrified" styledegree="2">
-						As an AI language model, I don't have emotions or feelings, so I don't experience embarrassment or any other emotions. My purpose is to assist and provide helpful responses to your queries. Is there anything else I can help you with?
+    				<mstts:express-as style="friendly" styledegree="2">
+						Gracias por la conversación, Ricky. Si necesitas más ayuda en el futuro, no dudes en volver. ¡Adiós!
 				</mstts:express-as>
     		</voice>
     </speak>
