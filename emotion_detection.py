@@ -14,7 +14,7 @@ def emotion_from_string(input_str):
 
     async def main():
         try:
-            client = HumeStreamClient("j1JhMybzjU9RosGtVyF5qz50pCS5hRSzGZXzGYAFCy7erFrV")
+            client = HumeStreamClient("ENTER KEY HERE")
             config = LanguageConfig()
             async with client.connect([config]) as socket:
                 for i in range(1):
