@@ -6,7 +6,7 @@ from speech_emotion import ai_speak2
 from botcaseinstr import Case_1_system_instruction, Case_2_system_instruction
 import openai
 
-openai.api_key ='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'
+openai.api_key ='ENTER YOUR KEY'
 
 
 def get_completion_from_messages(messages, model="gpt-4", temperature=0, max_tokens=500):
